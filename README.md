@@ -1,8 +1,7 @@
 # ContactNotes
 ![Heavily edited screenshot showcasing the mod's functionality, letting you add notes to contacts.](/banner.png)
 
-[![Thunderstore Badge](https://modding.resonite.net/assets/available-on-thunderstore.svg)](https://thunderstore.io/c/resonite/)
-Not yet,,,
+
 
 A [Resonite](https://resonite.com/) mod that lets you add notes to Contacts.
 For those of us who are trigger-happy with their "Accept Request" button on Contacts
@@ -13,6 +12,7 @@ For those of us who are trigger-happy with their "Accept Request" button on Cont
 > Alpha build, expect things to change!
 
 ## Installation (Automatic)
+[![Thunderstore Badge](https://modding.resonite.net/assets/available-on-thunderstore.svg)](https://thunderstore.io/c/resonite/)
 Haven't uploaded to Thunderstore yet :c will do once it is more polished
 
 ## Installation (Manual)
