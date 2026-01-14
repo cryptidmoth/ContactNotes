@@ -1,7 +1,19 @@
 # ContactNotes
-[![Thunderstore Badge](https://modding.resonite.net/assets/available-on-thunderstore.svg)](https://thunderstore.io/c/resonite/)
+![Heavily edited screenshot showcasing the mod's functionality, letting you add notes to contacts.](/banner.png)
 
-A [Resonite](https://resonite.com/) mod that [TODO: describe what your mod does here].
+[![Thunderstore Badge](https://modding.resonite.net/assets/available-on-thunderstore.svg)](https://thunderstore.io/c/resonite/)
+Not yet,,,
+
+A [Resonite](https://resonite.com/) mod that lets you add notes to Contacts.
+For those of us who are trigger-happy with their "Accept Request" button on Contacts
+![GIF showcasing the mod in action.](/demo.gif)
+
+
+> [!NOTE]
+> Alpha build, expect things to change!
+
+## Installation (Automatic)
+Haven't uploaded to Thunderstore yet :c will do once it is more polished
 
 ## Installation (Manual)
 1. Install [BepisLoader](https://github.com/ResoniteModding/BepisLoader) for Resonite.
@@ -9,13 +21,3 @@ A [Resonite](https://resonite.com/) mod that [TODO: describe what your mod does 
 3. Extract the ZIP and copy the `plugins` folder to your BepInEx folder in your Resonite installation directory:
    - **Default location:** `C:\Program Files (x86)\Steam\steamapps\common\Resonite\BepInEx\`
 4. Start the game. If you want to verify that the mod is working you can check your BepInEx logs.
-
----
-
-## Development
-
-### Getting Started with This Template
-
-This project was created using the BepInEx Resonite template. For comprehensive setup and development instructions, see the [Creating a Project guide](https://modding.resonite.net/creating-a-mod/creating-a-project).
-
-**TODO: Remove this section after setting up your project**
