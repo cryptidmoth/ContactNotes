@@ -1,0 +1,83 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Version>0.0.1</Version>
+    <Authors>cryptidmoth</Authors>
+    <TargetFramework>net10.0</TargetFramework>
+    <RepositoryUrl>https://github.com/cryptidmoth/ContactNotes</RepositoryUrl>
+    <PackageId>cryptidmoth.ContactNotes</PackageId>
+    <Product>ContactNotes</Product>
+    <RootNamespace>ContactNotes</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Deterministic>true</Deterministic>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <CopyToPlugins>true</CopyToPlugins>
+    <ThunderstorePackable>true</ThunderstorePackable>
+    <ResoniteLaunchArguments>-applaunch 2519830 --hookfxr-enable --bepinex-target C:\Users\User\AppData\Roaming\com.kesomannen.gale\resonite\profiles\Modding\BepInEx -DoNotAutoLaunchHome -SkipIntroTutorial -CachePath C:\Users\User\Documents\Resonite\Release\Cache -data C:\Users\User\Documents\Resonite\Release\Data</ResoniteLaunchArguments>
+    <PluginTargetDir>C:\Users\User\AppData\Roaming\com.kesomannen.gale\resonite\profiles\Modding\BepInEx\plugins\$(AssemblyName)</PluginTargetDir>
+    <GamePath Condition="'$(ResonitePath)' != ''">$(ResonitePath)/</GamePath>
+    <GamePath Condition="Exists('$(MSBuildProgramFiles32)\Steam\steamapps\common\Resonite\')">$(MSBuildProgramFiles32)\Steam\steamapps\common\Resonite\</GamePath>
+    <GamePath Condition="Exists('$(HOME)/.steam/steam/steamapps/common/Resonite/')">$(HOME)/.steam/steam/steamapps/common/Resonite/</GamePath>
+    <RestoreAdditionalProjectSources>
+      https://nuget-modding.resonite.net/v3/index.json;
+    </RestoreAdditionalProjectSources>
+  </PropertyGroup>
+
+  <!-- Modding dependencies -->
+  <ItemGroup>
+    <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="BepInEx.ResonitePluginInfoProps" Version="3.*" />
+    <PackageReference Include="MonoMod.RuntimeDetour" Version="25.3.3" />
+    <PackageReference Include="ResoniteModding.BepInExResoniteShim" Version="0.9.*" />
+    <PackageReference Include="ResoniteModding.BepisResoniteWrapper" Version="1.*" />
+      <PackageReference Include="MonoDetour.HookGen" Version="0.7.*" PrivateAssets="all" />
+      <PackageReference Include="MonoDetour" Version="[*,2.0)" /> <!-- Highest version below 2.0 -->
+      <PackageReference Include="System.Reactive" Version="6.1.0" />
+  </ItemGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <Optimize>false</Optimize>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>portable</DebugType>
+  </PropertyGroup>
+  
+  <!-- NuGet fallback stripped game references -->
+  <ItemGroup Condition="Exists('$(GamePath)')">
+    <PackageReference Include="Resonite.GameLibs" Version="2026.1.9.1218" PrivateAssets="all" Publicize="true" />
+  </ItemGroup>
+
+  <!-- Local game references -->
+  <ItemGroup Condition="!Exists('$(GamePath)')">
+    <Reference Include="FrooxEngine" Publicize="true">
+      <HintPath>$(GamePath)FrooxEngine.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Elements.Core">
+      <HintPath>$(GamePath)Elements.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Renderite.Shared">
+      <HintPath>$(GamePath)Renderite.Shared.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Skyfrost.Base" Publicize="true">
+      <HintPath>$(GamePath)Skyfrost.Base.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <!-- Post-build copy to game plugins folder -->
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <ItemGroup>
+      <PluginFiles Include="$(TargetPath)" />
+      <PluginFiles Include="$(TargetDir)$(TargetName).pdb" Condition="Exists('$(TargetDir)$(TargetName).pdb')" />
+    </ItemGroup>
+    
+    <Copy SourceFiles="@(PluginFiles)" DestinationFolder="$(PluginTargetDir)" Condition="'$(CopyToPlugins)' == 'true'" />
+    <Message Text="Copied plugin files to $(PluginTargetDir)" Importance="high" Condition="'$(CopyToPlugins)' == 'true'" />
+  </Target>
+</Project>
