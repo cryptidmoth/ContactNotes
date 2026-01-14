@@ -13,6 +13,7 @@ For those of us who are trigger-happy with their "Accept Request" button on Cont
 
 ## Installation (Automatic)
 [![Thunderstore Badge](https://modding.resonite.net/assets/available-on-thunderstore.svg)](https://thunderstore.io/c/resonite/)
+
 Haven't uploaded to Thunderstore yet :c will do once it is more polished
 
 ## Installation (Manual)
